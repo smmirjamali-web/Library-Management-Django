@@ -6,9 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    {% for book in books %}
-        <p>{{ book.title}} - {{ book.author}}</p>
-    {% endfor %}
-    
+    <h1>Books List</h1>
+
+    <a href="{% url 'books:book_create' %}">Add New Book</a>
+
+    <ul>
+        {% for book in books %}
+            <li>{{ book.title}} - {{ book.author}}</li>
+        {% endfor %}
+    </ul>    
 </body>
 </html>
