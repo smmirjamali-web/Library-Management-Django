@@ -12,7 +12,10 @@
 
     <ul>
         {% for book in books %}
-            <li>{{ book.title}} - {{ book.author}}</li>
+            <li>
+                {{ book.title}} - {{ book.author}}
+                <a href="{% url 'books:book_update' book.id %}">edit</a>
+            </li>
         {% endfor %}
     </ul>    
 </body>
