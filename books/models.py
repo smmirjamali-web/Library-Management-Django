@@ -9,14 +9,27 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
-            super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
 
+class Author(models.Model):
+    first_name = models.CharField(max_length=25)
+    last_name = models.CharField(max_length=25)
+    age = models.IntegerField()
+
+    @property
+    def book_count(self):
+        return self.books.count()
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+
 class Book(models.Model):
     title = models.CharField(max_length=200)
-    author = models.CharField(max_length=200)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, related_name='books')
     published_date = models.DateField()
     isbn = models.CharField(max_length=13, unique=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)

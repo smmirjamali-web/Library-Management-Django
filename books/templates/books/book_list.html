@@ -13,7 +13,10 @@
     <ul>
         {% for book in books %}
             <li>
-                {{ book.title}} - {{ book.author}}
+                {{ book.title}} - {{ book.author.first_name}} {{book.author.last_name}}
+                {% if book.category %}
+                    {{ book.category.name}}
+                {% endif %}
                 <a href="{% url 'books:book_update' book.id %}">edit</a>
             </li>
         {% endfor %}

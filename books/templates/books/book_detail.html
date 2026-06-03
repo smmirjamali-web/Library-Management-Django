@@ -6,9 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <h3> title {{book.title}} </h3>
-    <h3> author {{book.author}} </h3>
-    <h3> isbn {{book.isbn}} </h3>
-    <h3> published date {{book.published_date}} </h3>
+    <h3> Title :{{book.title}} </h3>
+    <h3> Author :{{book.author.first_name}} {{book.author.last_name}} </h3>
+    <h3> Isbn :{{book.isbn}} </h3>
+    <h3> Published date :{{book.published_date}} </h3>
+    <h3>Category :{{ book.category.name|default:no category }}</h3>
+    <h3>Total copies :{{ book.total_copies }}</h3>
+    <h3>Available :{{ book.available_copies }}</h3>
 </body>
 </html>
