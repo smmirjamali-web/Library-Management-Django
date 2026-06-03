@@ -18,6 +18,8 @@
                     {{ book.category.name}}
                 {% endif %}
                 <a href="{% url 'books:book_update' book.id %}">edit</a>
+
+                <a href="{% url 'books:author_create'%}">Add New Author</a>
             </li>
         {% endfor %}
     </ul>    

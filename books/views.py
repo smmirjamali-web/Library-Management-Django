@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Book
 from .forms import BookForm
+from .forms import AuthorForm
 # Create your views here.
 
 def book_list(request):
@@ -33,5 +34,15 @@ def book_create_update(request, pk=None):
             form = BookForm()
     return render(request, 'books/book_form.html', {'form': form})
 
+def author_create(request):
+    if request.method == 'POST':
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('books:author_create')
+    else:
+        form = AuthorForm()
+
+    return render(request, 'books/author_add.html', {'form': form})
 
         
